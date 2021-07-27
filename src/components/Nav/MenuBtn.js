@@ -18,7 +18,7 @@ const BtnContainer = styled.div`
   display: none;
   flex-direction: column;
   position: relative;
-  width: 300px;
+  width: 40px;
   height: 24px;
   cursor: pointer;
   > span {
@@ -48,7 +48,7 @@ const BtnContainer = styled.div`
   }
 
   @media screen and (max-width: 1200px) {
-    width: 100px;
+    width: 40px;
   }
   @media screen and (max-width: 768px) {
     display: flex;

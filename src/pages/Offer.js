@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Product from '../components/Offer/Product';
 import { fetchItems } from '../redux/shopSlice';
+import Error from '../components/Error';
 
 const Offer = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,8 @@ const Offer = () => {
       <h1>shop</h1>
       {apiStatus === 'loading' ? (
         <Loading>loading</Loading>
+      ) : apiStatus === 'failed' ? (
+        <Error />
       ) : (
         <ItemsContainer>
           {items.map((item) => (
@@ -46,4 +49,3 @@ const ItemsContainer = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-row-gap: 1rem;
 `;
-const ProductContainer = styled.div``;

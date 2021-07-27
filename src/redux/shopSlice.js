@@ -14,12 +14,13 @@ export const shopSlice = createSlice({
   name: 'shop',
   initialState: {
     items: [],
+    cart: [],
     status: 'idle',
     error: null,
   },
   reducers: {
-    addItem: (state, action) => {
-      state.items.push(action.payload.item);
+    addToCart: (state, action) => {
+      state.cart.push(action.payload.item);
     },
   },
   extraReducers: {
@@ -37,7 +38,7 @@ export const shopSlice = createSlice({
   },
 });
 
-export const { addItem } = shopSlice.actions;
+export const { addToCart } = shopSlice.actions;
 export const selectProduct = (state, productId) =>
   state.shop.items.find((item) => item.id === productId);
 export default shopSlice.reducer;

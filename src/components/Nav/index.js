@@ -36,6 +36,7 @@ const NavContainer = styled.div`
   top: 0;
   width: 100vw;
   height: 4rem;
+  z-index: 999;
   background: ${(props) => props.theme.dark};
 `;
 const NavWrapper = styled.nav`
