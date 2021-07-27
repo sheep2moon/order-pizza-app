@@ -28,6 +28,7 @@ export const shopSlice = createSlice({
     },
     [fetchItems.fulfilled]: (state, action) => {
       state.items.push(...action.payload);
+      state.status = 'succed';
     },
     [fetchItems.rejected]: (state, action) => {
       state.status = 'failed';
@@ -37,4 +38,6 @@ export const shopSlice = createSlice({
 });
 
 export const { addItem } = shopSlice.actions;
+export const selectProduct = (state, productId) =>
+  state.shop.items.find((item) => item.id === productId);
 export default shopSlice.reducer;

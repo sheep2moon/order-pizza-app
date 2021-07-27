@@ -17,7 +17,7 @@ export default NavCart;
 
 const NavCartContainer = styled.div`
   width: 300px;
-  margin-right: 1rem;
+  margin-right: 2rem;
   @media screen and (max-width: 768px) {
     display: none;
   }

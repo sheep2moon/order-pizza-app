@@ -14,7 +14,7 @@ const MenuBtn = ({ isMenuOpen, toggleMenu }) => {
 export default MenuBtn;
 
 const BtnContainer = styled.div`
-  margin-right: 1rem;
+  margin-right: 2rem;
   display: none;
   flex-direction: column;
   position: relative;

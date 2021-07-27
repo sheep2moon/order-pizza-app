@@ -5,20 +5,9 @@ import Nav from './components/Nav';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Offer from './pages/Offer';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchItems } from './redux/shopSlice';
+import SingleProduct from './pages/SingleProduct';
 
 function App() {
-  const dispatch = useDispatch();
-  const apiStatus = useSelector((state) => state.shop.status);
-
-  useEffect(() => {
-    if (apiStatus === 'idle') {
-      dispatch(fetchItems());
-    }
-  }, [apiStatus, dispatch]);
-
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -27,6 +16,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/oferta' component={Offer} />
+          <Route path='/produkt/:id' component={SingleProduct} />
         </Switch>
       </Router>
     </ThemeProvider>

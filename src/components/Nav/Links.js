@@ -32,6 +32,7 @@ const RouterLink = styled(Link)`
   text-decoration: none;
   padding: 1rem;
   font-weight: 600;
+  font-size: 1.2rem;
   color: ${(props) => props.theme.primary};
   :hover {
     background: #ffffff10;

@@ -41,6 +41,7 @@ const SidebarLinks = styled.div`
 const RouterLink = styled(Link)`
   border-bottom: 1px solid #ffffff10;
   padding: 1rem;
+  font-size: 1.2rem;
   text-decoration: none;
   text-align: center;
   color: ${(props) => props.theme.primary};
