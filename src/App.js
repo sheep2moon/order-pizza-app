@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import { ThemeProvider } from 'styled-components';
 import './App.css';
+import { GlobalStyle, theme } from './commons/Theme';
+import Nav from './components/Nav';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Offer from './pages/Offer';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchItems } from './redux/shopSlice';
 
 function App() {
+  const dispatch = useDispatch();
+  const apiStatus = useSelector((state) => state.shop.status);
+
+  useEffect(() => {
+    if (apiStatus === 'idle') {
+      dispatch(fetchItems());
+    }
+  }, [apiStatus, dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Router>
+        <Nav />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/oferta' component={Offer} />
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 }
 
