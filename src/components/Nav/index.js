@@ -5,6 +5,7 @@ import logoIcon from '../../assets/pizza.svg';
 import Links from './Links';
 import NavCart from './NavCart';
 import Sidebar from './Sidebar';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +22,9 @@ const Nav = () => {
         </Logo>
         <Links setIsMenuOpen={setIsMenuOpen} />
         <MenuBtn isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
-        <NavCart />
+        <NavCartLink to='/koszyk'>
+          <NavCart />
+        </NavCartLink>
       </NavWrapper>
 
       <Sidebar isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
@@ -38,6 +41,7 @@ const NavContainer = styled.div`
   height: 4rem;
   z-index: 999;
   background: ${(props) => props.theme.dark};
+  box-shadow: 0 0 3px ${(props) => props.theme.primary};
 `;
 const NavWrapper = styled.nav`
   max-width: 1400px;
@@ -59,5 +63,17 @@ const Logo = styled.div`
     font-size: 2.4rem;
     margin-left: 1rem;
     font-family: 'Qahiri', sans-serif;
+  }
+`;
+const NavCartLink = styled(Link)`
+  display: flex;
+  justify-content: flex-end;
+  width: 300px;
+  margin-right: 2rem;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+  @media screen and (max-width: 1200px) {
+    width: 100px;
   }
 `;

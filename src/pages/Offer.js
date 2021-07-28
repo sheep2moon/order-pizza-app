@@ -19,7 +19,6 @@ const Offer = () => {
 
   return (
     <OfferContainer>
-      <h1>shop</h1>
       {apiStatus === 'loading' ? (
         <Loading>loading</Loading>
       ) : apiStatus === 'failed' ? (
@@ -42,10 +41,13 @@ const OfferContainer = styled.div`
   margin: 4rem auto 0 auto;
   width: 100%;
   max-width: 1200px;
+  background: #fff;
+  min-height: calc(100vh - 4rem);
 `;
 const ItemsContainer = styled.div`
+  padding: 2rem;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   grid-row-gap: 1rem;
 `;

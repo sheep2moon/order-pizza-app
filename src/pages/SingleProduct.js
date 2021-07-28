@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { addToCart, fetchItems, selectProduct } from '../redux/shopSlice';
-import productImg from '../assets/pizza.svg';
 import Ingredients from '../components/SingleProduct/Ingredient';
 import Error from '../components/Error';
 import BottomBar from '../components/BottomBar';
@@ -15,8 +14,8 @@ const SingleProduct = () => {
   const apiStatus = useSelector((state) => state.shop.status);
   const product = useSelector((state) => selectProduct(state, parseInt(id)));
   const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [selectedSize, setSelectedSize] = useState(2);
-  const [selectedThickness, setSelectedThickness] = useState(2);
+  const [selectedSize, setSelectedSize] = useState(1);
+  const [selectedThickness, setSelectedThickness] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
 
   const handleAddToCart = () => {
@@ -25,15 +24,17 @@ const SingleProduct = () => {
       ingredients: selectedIngredients,
       size: selectedSize,
       thickness: selectedThickness,
+      price: totalPrice,
     };
     dispatch(addToCart(userProduct));
   };
 
+  // calculate price for product
   useEffect(() => {
     console.log(apiStatus);
     if (apiStatus === 'succed') {
-      let total = product.prices[selectedSize - 1];
-      if (selectedThickness === 3) {
+      let total = product.prices[selectedSize];
+      if (selectedThickness === 2) {
         total += 3.5;
       }
       total += selectedIngredients.length * 2.5;
@@ -74,59 +75,41 @@ const SingleProduct = () => {
         <SingleProductContainer>
           <LeftColumn>
             <h2>{product.name}</h2>
-            <img src={productImg} alt='' />
+            <img src={product.imgUrl} alt='' />
             <BasicIngredients>
               <p>Składniki: {product.ingredients.join(',')}</p>
             </BasicIngredients>
             <h3>Rozmiar</h3>
             <Sizes>
-              <Option
-                onClick={() => setSelectedSize(1)}
-                isActive={selectedSize === 1 ? true : false}
-              >
-                <h4>32cm</h4>
-                <p>{product.prices[0].toFixed(2)}zł</p>
-              </Option>
-              <Option
-                onClick={() => setSelectedSize(2)}
-                isActive={selectedSize === 2 ? true : false}
-              >
-                <h4>40cm</h4>
-                <p>{product.prices[1].toFixed(2)}zł</p>
-              </Option>
-              <Option
-                onClick={() => setSelectedSize(3)}
-                isActive={selectedSize === 3 ? true : false}
-              >
-                <h4>50cm</h4>
-                <p>{product.prices[2].toFixed(2)}zł</p>
-              </Option>
+              {[32, 40, 50].map((size, index) => (
+                <Option
+                  key={size}
+                  onClick={() => setSelectedSize(index)}
+                  isActive={selectedSize === index ? true : false}
+                >
+                  <h4>{size}cm</h4>
+                  <p>{product.prices[index].toFixed(2)}zł</p>
+                </Option>
+              ))}
             </Sizes>
           </LeftColumn>
           <RightColumn>
             <h3>Ciasto</h3>
             <DoughThickness>
-              <Option
-                onClick={() => setSelectedThickness(1)}
-                isActive={selectedThickness === 1 ? true : false}
-              >
-                <h4>Cienkie</h4>
-                <p>+0,00zł</p>
-              </Option>
-              <Option
-                onClick={() => setSelectedThickness(2)}
-                isActive={selectedThickness === 2 ? true : false}
-              >
-                <h4>Klasyczne</h4>
-                <p>+0,00zł</p>
-              </Option>
-              <Option
-                onClick={() => setSelectedThickness(3)}
-                isActive={selectedThickness === 3 ? true : false}
-              >
-                <h4>Grube</h4>
-                <p>+3,50zł</p>
-              </Option>
+              {[
+                { size: 'cienkie', price: 0 },
+                { size: 'standardowe', price: 0 },
+                { size: 'grube', price: 3.5 },
+              ].map((option, index) => (
+                <Option
+                  key={option.size}
+                  onClick={() => setSelectedThickness(index)}
+                  isActive={selectedThickness === index ? true : false}
+                >
+                  <h4>{option.size}</h4>
+                  <p>+{option.price.toFixed(2)}zł</p>
+                </Option>
+              ))}
             </DoughThickness>
             <h3>Dobierz składniki (+2.50zł)</h3>
             <Ingredients
@@ -154,7 +137,7 @@ const SingleProductContainer = styled.div`
   min-height: 100vh;
   display: flex;
   padding: 2rem;
-  background: ${(props) => props.theme.primary};
+  background: #fff;
   @media screen and (max-width: 1000px) {
     flex-direction: column;
   }
@@ -166,6 +149,9 @@ const LeftColumn = styled.div`
   align-items: center;
   > img {
     width: 300px;
+    height: 300px;
+    object-fit: cover;
+    box-shadow: 0 0 2px #000;
   }
   > h2 {
     text-transform: capitalize;
@@ -187,6 +173,8 @@ const Sizes = styled.div`
   justify-content: center;
 `;
 const Option = styled.div`
+  width: 33%;
+  max-width: 100px;
   padding: 1rem;
   display: flex;
   flex-direction: column;

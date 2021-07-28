@@ -5,7 +5,7 @@ const BottomBar = ({ handleAddToCart, totalPrice }) => {
   return (
     <BottomBarContainer>
       <BottomWrapper>
-        <p>{totalPrice.toFixed(2)}zł</p>
+        <p>Cena: {totalPrice.toFixed(2)}zł</p>
         <Btn onClick={handleAddToCart}>Dodaj do zamówienia</Btn>
       </BottomWrapper>
     </BottomBarContainer>
@@ -23,8 +23,6 @@ const BottomBarContainer = styled.div`
   left: 50%;
   background: ${(props) => props.theme.dark};
   color: #fff;
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
   transform: translateX(-50%);
 `;
 const BottomWrapper = styled.div`
@@ -33,6 +31,9 @@ const BottomWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  > p {
+    font-size: 1.2rem;
+  }
 `;
 
 const Btn = styled.button`
@@ -41,4 +42,9 @@ const Btn = styled.button`
   text-decoration: none;
   background: ${(props) => props.theme.primary};
   color: ${(props) => props.theme.dark};
+  font-size: 1rem;
+  :hover {
+    cursor: pointer;
+    box-shadow: 0 1px 3px #ffffff80;
+  }
 `;

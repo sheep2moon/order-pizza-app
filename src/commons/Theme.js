@@ -2,7 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
     body{
-        background: #fff;
+  
+  
     }
     *{
       box-sizing: border-box;

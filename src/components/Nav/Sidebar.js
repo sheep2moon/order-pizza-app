@@ -1,6 +1,8 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import NavCart from './NavCart';
 
 const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
   return (
@@ -16,6 +18,10 @@ const Sidebar = ({ isMenuOpen, setIsMenuOpen }) => {
           Kontakt
         </RouterLink>
       </SidebarLinks>
+      <NavCartLink to='/koszyk' onClick={() => setIsMenuOpen(false)}>
+        <NavCart />
+        <h4>Zobacz Koszyk</h4>
+      </NavCartLink>
     </SidebarContainer>
   );
 };
@@ -45,6 +51,22 @@ const RouterLink = styled(Link)`
   text-decoration: none;
   text-align: center;
   color: ${(props) => props.theme.primary};
+  :hover {
+    background: #ffffff10;
+  }
+`;
+const NavCartLink = styled(Link)`
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  text-decoration: none;
+  > h4 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+  }
   :hover {
     background: #ffffff10;
   }

@@ -20,7 +20,7 @@ export const shopSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
-      state.cart.push(action.payload.item);
+      state.cart.push(action.payload);
     },
   },
   extraReducers: {

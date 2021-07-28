@@ -4,7 +4,15 @@ import styled from 'styled-components';
 const Home = () => {
   return (
     <HomeContainer>
-      <h1>Home</h1>
+      <Hero>
+        <HeroInfo>
+          <h3>Masz ochote na pizze?</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+            ipsum laboriosam unde voluptatem ex natus!
+          </p>
+        </HeroInfo>
+      </Hero>
     </HomeContainer>
   );
 };
@@ -12,6 +20,16 @@ const Home = () => {
 export default Home;
 
 const HomeContainer = styled.div`
-  margin-top: 4rem;
+  margin: 4rem auto 4rem auto;
   color: ${(props) => props.theme.dark};
+  max-width: 1400px;
+`;
+const Hero = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+`;
+const HeroInfo = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
