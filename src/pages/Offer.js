@@ -38,11 +38,11 @@ export default Offer;
 
 const Loading = styled.div``;
 const OfferContainer = styled.div`
-  margin: 4rem auto 0 auto;
+  margin: 5rem auto 1rem auto;
   width: 100%;
   max-width: 1200px;
   background: #fff;
-  min-height: calc(100vh - 4rem);
+  min-height: calc(100vh - 6rem);
 `;
 const ItemsContainer = styled.div`
   padding: 2rem;

@@ -89,13 +89,14 @@ const IngredientContainer = styled.div`
   }
 `;
 const Ingredient = styled.div`
-  padding: 1rem;
+  padding: 1rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease-in;
-  background: ${({ isActive, theme }) => (isActive ? theme.secondary : '#fff')};
+  border: 4px solid
+    ${({ isActive, theme }) => (isActive ? theme.primary : '#fff')};
   border-radius: 0.25rem;
   box-shadow: 1px 1px 2px #000;
   :hover {

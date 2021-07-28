@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { FiShoppingBag } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 const NavCart = () => {
   const cart = useSelector((state) => state.shop.cart);

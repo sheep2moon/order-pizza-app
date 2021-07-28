@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import productImage from '../../assets/pizza.svg';
 import { BiCustomize } from 'react-icons/bi';
 
 const Product = ({ product }) => {

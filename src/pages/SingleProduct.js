@@ -17,6 +17,7 @@ const SingleProduct = () => {
   const [selectedSize, setSelectedSize] = useState(1);
   const [selectedThickness, setSelectedThickness] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isBtnAnimated, setisBtnAnimated] = useState(false);
 
   const handleAddToCart = () => {
     const userProduct = {
@@ -27,6 +28,10 @@ const SingleProduct = () => {
       price: totalPrice,
     };
     dispatch(addToCart(userProduct));
+    setisBtnAnimated(true);
+    setTimeout(() => {
+      setisBtnAnimated(false);
+    }, 3000);
   };
 
   // calculate price for product
@@ -120,6 +125,7 @@ const SingleProduct = () => {
           <BottomBar
             handleAddToCart={handleAddToCart}
             totalPrice={totalPrice}
+            isBtnAnimated={isBtnAnimated}
           />
         </SingleProductContainer>
       ) : (
@@ -132,7 +138,7 @@ const SingleProduct = () => {
 export default SingleProduct;
 
 const SingleProductContainer = styled.div`
-  margin: 4rem auto 0 auto;
+  margin: 5rem auto 0 auto;
   max-width: 1200px;
   min-height: 100vh;
   display: flex;
@@ -184,10 +190,11 @@ const Option = styled.div`
   margin: 0.2rem;
   cursor: pointer;
   transition: all 0.1s ease-in;
-  background: ${({ isActive, theme }) =>
-    isActive ? theme.secondary : '#fefefe'};
+  border: 4px solid
+    ${({ isActive, theme }) => (isActive ? theme.primary : '#fefefe')};
   :hover {
     transform: scale(1.03);
+    transition: all 0.1s ease-in;
   }
 `;
 const RightColumn = styled.div`
