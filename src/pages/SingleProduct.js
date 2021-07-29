@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { addToCart, fetchItems, selectProduct } from '../redux/shopSlice';
 import Ingredients from '../components/SingleProduct/Ingredient';
 import Error from '../components/Error';
 import BottomBar from '../components/BottomBar';
+import { BiArrowBack } from 'react-icons/bi';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const SingleProduct = () => {
 
   const handleAddToCart = () => {
     const userProduct = {
+      id: product.id,
       name: product.name,
       ingredients: selectedIngredients,
       size: selectedSize,
@@ -78,55 +80,62 @@ const SingleProduct = () => {
         <h1>loading</h1>
       ) : apiStatus === 'succed' ? (
         <SingleProductContainer>
-          <LeftColumn>
+          <Header>
+            <BackLink to='/oferta'>
+              <BackIcon />
+            </BackLink>
             <h2>{product.name}</h2>
-            <img src={product.imgUrl} alt='' />
-            <BasicIngredients>
-              <p>Składniki: {product.ingredients.join(',')}</p>
-            </BasicIngredients>
-            <h3>Rozmiar</h3>
-            <Sizes>
-              {[32, 40, 50].map((size, index) => (
-                <Option
-                  key={size}
-                  onClick={() => setSelectedSize(index)}
-                  isActive={selectedSize === index ? true : false}
-                >
-                  <h4>{size}cm</h4>
-                  <p>{product.prices[index].toFixed(2)}zł</p>
-                </Option>
-              ))}
-            </Sizes>
-          </LeftColumn>
-          <RightColumn>
-            <h3>Ciasto</h3>
-            <DoughThickness>
-              {[
-                { size: 'cienkie', price: 0 },
-                { size: 'standardowe', price: 0 },
-                { size: 'grube', price: 3.5 },
-              ].map((option, index) => (
-                <Option
-                  key={option.size}
-                  onClick={() => setSelectedThickness(index)}
-                  isActive={selectedThickness === index ? true : false}
-                >
-                  <h4>{option.size}</h4>
-                  <p>+{option.price.toFixed(2)}zł</p>
-                </Option>
-              ))}
-            </DoughThickness>
-            <h3>Dobierz składniki (+2.50zł)</h3>
-            <Ingredients
-              addIngredient={addIngredient}
-              selectedIngredients={selectedIngredients}
+          </Header>
+          <Columns>
+            <LeftColumn>
+              <img src={product.imgUrl} alt='' />
+              <BasicIngredients>
+                <p>Składniki: {product.ingredients.join(',')}</p>
+              </BasicIngredients>
+              <h3>Rozmiar</h3>
+              <Sizes>
+                {[32, 40, 50].map((size, index) => (
+                  <Option
+                    key={size}
+                    onClick={() => setSelectedSize(index)}
+                    isActive={selectedSize === index ? true : false}
+                  >
+                    <h4>{size}cm</h4>
+                    <p>{product.prices[index].toFixed(2)}zł</p>
+                  </Option>
+                ))}
+              </Sizes>
+            </LeftColumn>
+            <RightColumn>
+              <h3>Ciasto</h3>
+              <DoughThickness>
+                {[
+                  { size: 'cienkie', price: 0 },
+                  { size: 'standardowe', price: 0 },
+                  { size: 'grube', price: 3.5 },
+                ].map((option, index) => (
+                  <Option
+                    key={option.size}
+                    onClick={() => setSelectedThickness(index)}
+                    isActive={selectedThickness === index ? true : false}
+                  >
+                    <h4>{option.size}</h4>
+                    <p>+{option.price.toFixed(2)}zł</p>
+                  </Option>
+                ))}
+              </DoughThickness>
+              <h3>Dobierz składniki (+2.50zł)</h3>
+              <Ingredients
+                addIngredient={addIngredient}
+                selectedIngredients={selectedIngredients}
+              />
+            </RightColumn>
+            <BottomBar
+              handleAddToCart={handleAddToCart}
+              totalPrice={totalPrice}
+              isBtnAnimated={isBtnAnimated}
             />
-          </RightColumn>
-          <BottomBar
-            handleAddToCart={handleAddToCart}
-            totalPrice={totalPrice}
-            isBtnAnimated={isBtnAnimated}
-          />
+          </Columns>
         </SingleProductContainer>
       ) : (
         <Error />
@@ -140,10 +149,48 @@ export default SingleProduct;
 const SingleProductContainer = styled.div`
   margin: 5rem auto 0 auto;
   max-width: 1200px;
-  min-height: 100vh;
+  min-height: calc(100vh - 6rem);
   display: flex;
-  padding: 2rem;
+  flex-direction: column;
   background: #fff;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+`;
+const Header = styled.div`
+  padding: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: ${(props) => props.theme.dark};
+  margin-bottom: 1rem;
+  color: ${(props) => props.theme.primary};
+  position: relative;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  > h2 {
+    text-transform: capitalize;
+    border-bottom: 1px solid ${(props) => props.theme.light};
+  }
+`;
+const BackLink = styled(Link)`
+  color: ${(props) => props.theme.primary};
+`;
+const BackIcon = styled(BiArrowBack)`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 1rem;
+  font-size: 2.5rem;
+  padding: 0.25rem;
+  border-radius: 50%;
+  :hover {
+    background: #ffffff10;
+  }
+`;
+const Columns = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 1rem;
   @media screen and (max-width: 1000px) {
     flex-direction: column;
   }
@@ -159,9 +206,7 @@ const LeftColumn = styled.div`
     object-fit: cover;
     box-shadow: 0 0 2px #000;
   }
-  > h2 {
-    text-transform: capitalize;
-  }
+
   > h3 {
     margin-top: 2rem;
   }

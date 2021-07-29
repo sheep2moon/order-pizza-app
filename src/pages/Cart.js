@@ -1,10 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import CartItem from '../components/Cart/CartItem';
+import { removeFromCart } from '../redux/shopSlice';
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.shop.cart);
+
+  const handleDeleteItem = (id) => {
+    dispatch(removeFromCart(id));
+  };
 
   return (
     <CartContainer>
@@ -14,7 +20,7 @@ const Cart = () => {
         <p>Cena</p>
       </ColumnsNames>
       {cartItems.map((item) => (
-        <CartItem item={item} />
+        <CartItem item={item} handleDeleteItem={handleDeleteItem} />
       ))}
     </CartContainer>
   );
@@ -31,7 +37,7 @@ const CartContainer = styled.div`
 const ColumnsNames = styled.div`
   display: grid;
   padding: 1rem;
-  grid-template-columns: 1fr 2fr 0.5fr;
+  grid-template-columns: 1fr 2fr 0.5fr 0.2fr;
   background: ${(props) => props.theme.dark};
   color: ${(props) => props.theme.primary};
 `;

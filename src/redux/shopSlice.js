@@ -22,6 +22,9 @@ export const shopSlice = createSlice({
     addToCart: (state, action) => {
       state.cart.push(action.payload);
     },
+    removeFromCart: (state, action) => {
+      state.cart = state.cart.filter((item) => item.id !== action.payload);
+    },
   },
   extraReducers: {
     [fetchItems.pending]: (state, action) => {
@@ -38,7 +41,7 @@ export const shopSlice = createSlice({
   },
 });
 
-export const { addToCart } = shopSlice.actions;
+export const { addToCart, removeFromCart } = shopSlice.actions;
 export const selectProduct = (state, productId) =>
   state.shop.items.find((item) => item.id === productId);
 export default shopSlice.reducer;
