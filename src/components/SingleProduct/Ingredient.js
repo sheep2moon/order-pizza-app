@@ -97,7 +97,6 @@ const Ingredient = styled.div`
   transition: all 0.2s ease-in;
   border: 4px solid
     ${({ isActive, theme }) => (isActive ? theme.primary : '#fff')};
-  border-radius: 0.25rem;
   box-shadow: 1px 1px 2px #000;
   :hover {
     cursor: pointer;

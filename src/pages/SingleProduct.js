@@ -20,8 +20,13 @@ const SingleProduct = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [isBtnAnimated, setisBtnAnimated] = useState(false);
 
+  const uniqueId = () => {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  };
+
   const handleAddToCart = () => {
     const userProduct = {
+      uniqueId: uniqueId(),
       id: product.id,
       name: product.name,
       ingredients: selectedIngredients,
@@ -231,7 +236,6 @@ const Option = styled.div`
   flex-direction: column;
   align-items: center;
   box-shadow: 1px 1px 4px #000000;
-  border-radius: 0.25rem;
   margin: 0.2rem;
   cursor: pointer;
   transition: all 0.1s ease-in;

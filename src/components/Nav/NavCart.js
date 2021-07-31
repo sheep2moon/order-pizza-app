@@ -41,14 +41,14 @@ const CartWrap = styled.div`
     width: 1.2rem;
     height: 1.2rem;
     position: absolute;
-    color: #fff;
+    color: ${(props) => props.theme.dark};
     right: -5px;
-    bottom: -10px;
+    bottom: -8px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: ${(props) => props.theme.secondary};
+    background: ${(props) => props.theme.primary};
   }
 `;
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import heroImg from '../assets/heropizza.png';
+import BtnLink from '../components/BtnLink';
 
 const Home = () => {
   return (
@@ -13,7 +14,7 @@ const Home = () => {
             Zamów online z dostawą do domu, zajmie Ci to zaledwie kilka minut.
             Dobierz dowolne składniki i stwórz swoją ulubioną pizze!
           </p>
-          <BtnLink>Zobacz Oferte</BtnLink>
+          <BtnLink to='/oferta'>Zobacz Oferte</BtnLink>
         </HeroInfo>
         <HeroImgContainer>
           <img src={heroImg} alt='' />
@@ -45,27 +46,21 @@ const HeroInfo = styled.div`
   flex-direction: column;
   background: ${(props) => props.theme.primary};
   align-items: center;
-  margin: 1rem;
+  margin: 2rem 1rem 1rem 1rem;
   border-radius: 1rem;
   > h1 {
+    font-size: 2rem;
     color: ${(props) => props.theme.dark};
     border-bottom: 1px solid ${(props) => props.theme.dark};
   }
   > p {
+    font-size: 1.2rem;
     font-weight: 600;
     padding: 1rem;
     max-width: 600px;
   }
 `;
-const BtnLink = styled(Link)`
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin: 1rem 0;
-  color: ${(props) => props.theme.primary};
-  background: ${(props) => props.theme.dark};
-`;
+
 const HeroImgContainer = styled.div`
   display: flex;
   align-items: center;

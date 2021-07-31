@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import BtnLink from '../components/BtnLink';
 import CartItem from '../components/Cart/CartItem';
 import { removeFromCart } from '../redux/shopSlice';
 
@@ -18,10 +19,12 @@ const Cart = () => {
         <p>Nazwa</p>
         <p>Dodatkowe Składniki</p>
         <p>Cena</p>
+        <p>Usuń</p>
       </ColumnsNames>
       {cartItems.map((item) => (
         <CartItem item={item} handleDeleteItem={handleDeleteItem} />
       ))}
+      <BtnLink to='/zamowienie'>Zamów</BtnLink>
     </CartContainer>
   );
 };

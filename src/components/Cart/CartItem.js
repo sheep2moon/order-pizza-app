@@ -19,11 +19,11 @@ const CartItem = ({ item, handleDeleteItem }) => {
       </h4>
       <p>
         {item.ingredients.length
-          ? item.ingredients.map((ingredient) => `${ingredient} `)
+          ? item.ingredients.map((ingredient) => `${ingredient}, `)
           : 'brak'}
       </p>
       <p>{item.price.toFixed(2)}zł</p>
-      <DeleteBtn onClick={() => handleDeleteItem(item.id)}>
+      <DeleteBtn onClick={() => handleDeleteItem(item.uniqueId)}>
         <RiDeleteBinLine />
       </DeleteBtn>
     </ItemContainer>
@@ -38,6 +38,7 @@ const ItemContainer = styled.div`
   align-items: center;
   background: #eaeaea;
   grid-template-columns: 1fr 2fr 0.5fr 0.2fr;
+  border-bottom: 1px solid #00000020;
   > h4 {
     text-transform: capitalize;
   }
@@ -57,4 +58,13 @@ const DeleteBtn = styled.button`
   border: none;
   background: none;
   font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  :hover {
+    background: #00000010;
+  }
 `;
