@@ -15,15 +15,17 @@ const Cart = () => {
 
   return (
     <CartContainer>
-      <ColumnsNames>
-        <p>Nazwa</p>
-        <p>Dodatkowe Składniki</p>
-        <p>Cena</p>
-        <p>Usuń</p>
-      </ColumnsNames>
-      {cartItems.map((item) => (
-        <CartItem item={item} handleDeleteItem={handleDeleteItem} />
-      ))}
+      <CartItemsWrap>
+        <ColumnsNames>
+          <p>Nazwa</p>
+          <p>Dodatkowe Składniki</p>
+          <p>Cena</p>
+          <p>Usuń</p>
+        </ColumnsNames>
+        {cartItems.map((item) => (
+          <CartItem item={item} handleDeleteItem={handleDeleteItem} />
+        ))}
+      </CartItemsWrap>
       <BtnLink to='/zamowienie'>Zamów</BtnLink>
     </CartContainer>
   );
@@ -36,6 +38,14 @@ const CartContainer = styled.div`
   max-width: 1400px;
   background: #fff;
   min-height: calc(100vh - 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+const CartItemsWrap = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 const ColumnsNames = styled.div`
   display: grid;
@@ -43,4 +53,7 @@ const ColumnsNames = styled.div`
   grid-template-columns: 1fr 2fr 0.5fr 0.2fr;
   background: ${(props) => props.theme.dark};
   color: ${(props) => props.theme.primary};
+  @media screen and (max-width: 500px) {
+    font-size: 0.7rem;
+  }
 `;

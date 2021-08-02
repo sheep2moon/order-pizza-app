@@ -64,6 +64,15 @@ const Logo = styled.div`
     margin-left: 1rem;
     font-family: 'Qahiri', sans-serif;
   }
+  @media screen and (max-width: 350px) {
+    > img {
+      width: 3rem;
+    }
+    > h2 {
+      font-size: 1.8rem;
+      margin-left: 0.5rem;
+    }
+  }
 `;
 const NavCartLink = styled(Link)`
   display: flex;

@@ -47,24 +47,25 @@ const ItemContainer = styled.div`
   }
   @media screen and (max-width: 500px) {
     > p {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
     }
     > h4 {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
     }
   }
 `;
 const DeleteBtn = styled.button`
   border: none;
   background: none;
-  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 3rem;
-  height: 3rem;
+  font-size: 1.6rem;
   cursor: pointer;
   :hover {
     background: #00000010;
+  }
+  @media screen and (max-width: 500px) {
+    font-size: 1.2rem;
   }
 `;
