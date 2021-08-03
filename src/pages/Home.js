@@ -8,11 +8,12 @@ const Home = () => {
     <HomeContainer>
       <Hero>
         <HeroInfo>
-          <h1>Pizza Online</h1>
+          <h1>Zamów pizze online</h1>
           <p>
             Zamów online z dostawą do domu, zajmie Ci to zaledwie kilka minut.
             Dobierz dowolne składniki i stwórz swoją ulubioną pizze!
           </p>
+          <p>Darmowa dostawa w obrębie miasta dla zamówień powyżej 50zł.</p>
           <BtnLink to='/oferta'>Zobacz Oferte</BtnLink>
         </HeroInfo>
         <HeroImgContainer>
@@ -43,13 +44,19 @@ const Hero = styled.section`
 const HeroInfo = styled.div`
   display: flex;
   flex-direction: column;
-  background: ${(props) => props.theme.primary};
+  background: #fff;
   align-items: center;
   margin: 2rem 1rem 1rem 1rem;
   border-radius: 1rem;
   > h1 {
-    font-size: 2rem;
-    color: ${(props) => props.theme.dark};
+    font-size: 2.4rem;
+    color: ${(props) => props.theme.primary};
+    background: ${(props) => props.theme.dark};
+    width: 100%;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    text-align: center;
+    padding: 0 0.5rem;
     border-bottom: 1px solid ${(props) => props.theme.dark};
   }
   > p {
@@ -65,6 +72,10 @@ const HeroImgContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  background: ${(props) => props.theme.dark};
+  border-radius: 50%;
+  padding: 1rem;
+  margin: 1rem;
   > img {
     padding: 1rem;
     width: 100%;

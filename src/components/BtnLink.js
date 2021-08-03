@@ -24,7 +24,6 @@ const BtnWrap = styled(Link)`
     transition: all 0.2s ease-in;
   }
   @media screen and (max-width: 500px) {
-    font-size: 1rem;
     padding: 0.4rem 1rem;
   }
 `;
