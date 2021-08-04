@@ -11,7 +11,7 @@ const Links = ({ setIsMenuOpen }) => {
       <RouterLink to='/oferta' onClick={() => setIsMenuOpen(false)}>
         Oferta
       </RouterLink>
-      <RouterLink to='/' onClick={() => setIsMenuOpen(false)}>
+      <RouterLink to='/kontakt' onClick={() => setIsMenuOpen(false)}>
         Kontakt
       </RouterLink>
     </LinksContainer>
