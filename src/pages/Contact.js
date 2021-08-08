@@ -11,7 +11,7 @@ const Contact = () => {
       <ContactInfo>
         <h2>Adres naszego lokalu:</h2>
         <p>
-          ul. Młyńska 20 <br /> 20-130 Lublin
+          ul. Przykładowa 20 <br /> 20-130 Lublin
         </p>
         <h2>Dane kontakowe:</h2>
         <p>tel: 389 893 389</p>

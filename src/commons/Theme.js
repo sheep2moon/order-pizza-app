@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const theme = {
-  light: '#90A4AE',
+  light: '#EEEEEE',
   dark: '#222222',
   primary: '#F7B633',
   secondary: '#16C79A',
