@@ -40,6 +40,7 @@ const HomeContainer = styled.div`
   min-height: calc(100vh - 4rem);
   display: flex;
   background-image: ${({ bgImg }) => `url(${bgImg})`};
+  background-size: cover;
   @media screen and (max-width: 1000px) {
     font-size: 0.8rem;
   }
