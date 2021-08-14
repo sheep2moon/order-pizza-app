@@ -1,13 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import Btn from '../Btn';
 
-const BottomBar = ({ handleAddToCart, totalPrice, isBtnAnimated }) => {
+const BottomBar = ({
+  totalPrice,
+  handlePreviousStep,
+  handleNextStep,
+  currentStep,
+}) => {
   return (
     <BottomBarContainer>
       <BottomWrapper>
+        <Btn onClick={handlePreviousStep} isDisabled={currentStep === 1}>
+          Wstecz
+        </Btn>
         <p>Cena: {totalPrice.toFixed(2)}zł</p>
-        <Btn isBtnAnimated={isBtnAnimated} onClick={handleAddToCart}>
-          {isBtnAnimated ? 'Pomyślnie dodano' : 'Dodaj do zamówienia'}
+        <Btn onClick={handleNextStep} isDisabled={currentStep === 3}>
+          Dalej
         </Btn>
       </BottomWrapper>
     </BottomBarContainer>
@@ -35,23 +44,5 @@ const BottomWrapper = styled.div`
   align-items: center;
   > p {
     font-size: 1.2rem;
-  }
-`;
-
-const Btn = styled.button`
-  border: none;
-  width: 12rem;
-  padding: 0.25rem 1rem;
-  text-decoration: none;
-  background: ${({ theme, isBtnAnimated }) =>
-    isBtnAnimated ? theme.secondary : theme.primary};
-  color: ${(props) => props.theme.dark};
-  font-size: 1rem;
-  font-weight: 600;
-  transition: all 0.2s ease-in;
-  :hover {
-    transition: all 0.2s ease-in;
-    cursor: pointer;
-    box-shadow: 0 1px 3px #ffffff80;
   }
 `;
