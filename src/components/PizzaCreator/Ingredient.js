@@ -16,62 +16,84 @@ const ingredientList = [
   {
     name: 'boczek',
     img: baconImg,
+    price: 3,
   },
   {
     name: 'chilli',
     img: chilliImg,
+    price: 3,
   },
   {
     name: 'jalapeno',
     img: jalapenoImg,
+    price: 3,
   },
   {
     name: 'mozzarella',
     img: mozzarellaImg,
+    price: 3,
   },
   {
     name: 'cebula',
     img: onionImg,
+    price: 2,
   },
   {
     name: 'papryka',
     img: paprikaImg,
+    price: 3,
   },
   {
     name: 'salami',
     img: pepperoniImg,
+    price: 3,
   },
   {
     name: 'ananas',
     img: pineappleImg,
+    price: 3,
   },
   {
     name: 'pomidor',
     img: tomatoImg,
+    price: 3,
   },
   {
     name: 'pieczarki',
     img: champignonImg,
+    price: 3,
   },
   {
     name: 'ser',
     img: cheeseImg,
+    price: 3,
   },
 ];
 
-const Ingredients = ({ addIngredient, selectedIngredients }) => {
+const Ingredients = ({
+  addIngredient,
+  removeIngredient,
+  selectedIngredients,
+}) => {
   return (
     <IngredientContainer>
-      {ingredientList.map((ingredient) => (
-        <Ingredient
-          key={ingredient.name}
-          onClick={() => addIngredient(ingredient.name)}
-          isActive={selectedIngredients.includes(ingredient.name)}
-        >
-          <h5>{ingredient.name}</h5>
-          <img src={ingredient.img} alt='ingredient' />
-        </Ingredient>
-      ))}
+      {ingredientList.map((ingredient) => {
+        const quantity = selectedIngredients.filter(
+          (el) => el === ingredient.name
+        ).length;
+        return (
+          <Ingredient key={ingredient.name}>
+            <img src={ingredient.img} alt='ingredient' />
+            <p>{ingredient.name}</p>
+            <p>{ingredient.price.toFixed(2)}zł</p>
+            <QuantityOptions>
+              <span onClick={() => removeIngredient(ingredient.name)}>-</span>
+              <span>{quantity}</span>
+              <span onClick={() => addIngredient(ingredient.name)}>+</span>
+            </QuantityOptions>
+          </Ingredient>
+        );
+      })}
     </IngredientContainer>
   );
 };
@@ -83,29 +105,29 @@ const IngredientContainer = styled.div`
   width: 100%;
   padding: 1em;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 0.5rem;
-  @media screen and (max-width: 500px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+  font-size: 1.2rem;
 `;
 const Ingredient = styled.div`
-  padding: 1rem 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: grid;
   align-items: center;
-  transition: all 0.2s ease-in;
-  background: ${(props) => (props.isActive ? props.theme.primary : 'none')};
-  box-shadow: 1px 1px 2px #000;
-  :hover {
-    cursor: pointer;
-    transform: scale(1.03);
-  }
-  > h5 {
-    margin-top: -1.2rem;
-  }
+  grid-template-columns: 0.5fr 1fr 0.5fr 1fr;
+
+  background: #eee;
+  width: 100%;
   > img {
-    width: 60px;
+    width: 3em;
+  }
+`;
+const QuantityOptions = styled.div`
+  display: flex;
+  justify-content: center;
+  > span {
+    width: 2em;
+    height: 2em;
+    display: grid;
+    place-items: center;
+    background: ${({ theme }) => theme.primary};
   }
 `;

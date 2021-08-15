@@ -25,7 +25,7 @@ const Home = () => {
           </InfoStep>
         ))}
         <BtnWrap>
-          <BtnLink to='/oferta'>Zobacz Oferte</BtnLink>
+          <BtnLink to='/stworz'>Zobacz Oferte</BtnLink>
         </BtnWrap>
       </HeroInfo>
     </HomeContainer>

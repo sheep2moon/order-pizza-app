@@ -52,12 +52,14 @@ const SingleProduct = () => {
   }, [selectedSize, selectedThickness, selectedIngredients]);
 
   const addIngredient = (name) => {
-    let newArr = selectedIngredients;
-    if (selectedIngredients.includes(name)) {
-      newArr = selectedIngredients.filter((el) => el !== name);
-      setSelectedIngredients(newArr);
-    } else {
-      newArr = [...selectedIngredients, name];
+    setSelectedIngredients([...selectedIngredients, name]);
+  };
+  const removeIngredient = (name) => {
+    const index = selectedIngredients.indexOf(name);
+    console.log(index);
+    if (index > -1) {
+      const newArr = selectedIngredients;
+      newArr.splice(index, 1);
       setSelectedIngredients(newArr);
     }
   };
@@ -79,6 +81,7 @@ const SingleProduct = () => {
         ) : currentStep === 2 ? (
           <SecondStep
             addIngredient={addIngredient}
+            removeIngredient={removeIngredient}
             selectedIngredients={selectedIngredients}
           />
         ) : currentStep === 3 ? (

@@ -96,8 +96,6 @@ const Option = styled.div`
   cursor: pointer;
   transition: all 0.1s ease-in;
   background: ${(props) => (props.isActive ? props.theme.primary : 'none')};
-  border: 4px solid
-    ${({ isActive, theme }) => (isActive ? theme.primary : '#fefefe')};
   :hover {
     transform: scale(1.03);
     transition: all 0.1s ease-in;
