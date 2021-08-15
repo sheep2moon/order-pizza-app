@@ -8,6 +8,8 @@ import FirstStep from '../components/PizzaCreator/FirstStep';
 import SecondStep from '../components/PizzaCreator/SecondStep';
 import ThirdStep from '../components/PizzaCreator/ThirdStep';
 
+const prices = [22, 28, 34];
+
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const [selectedIngredients, setSelectedIngredients] = useState([]);
@@ -15,7 +17,7 @@ const SingleProduct = () => {
   const [selectedThickness, setSelectedThickness] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isBtnAnimated, setisBtnAnimated] = useState(false);
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(1);
 
   const handleNextStep = () => setCurrentStep(currentStep + 1);
   const handlePreviousStep = () => setCurrentStep(currentStep - 1);
@@ -41,7 +43,7 @@ const SingleProduct = () => {
 
   // calculate price for product
   useEffect(() => {
-    let total = 25;
+    let total = prices[selectedSize];
     if (selectedThickness === 2) {
       total += 3.5;
     }
@@ -108,6 +110,9 @@ const CreatorFormContainer = styled.div`
   background: #fff;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
+  @media screen and (max-width: 768px) {
+    font-size: 0.7rem;
+  }
 `;
 const Header = styled.div`
   padding: 0.5rem;

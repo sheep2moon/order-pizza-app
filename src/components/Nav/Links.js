@@ -9,7 +9,7 @@ const Links = ({ setIsMenuOpen }) => {
         Strona Główna
       </RouterLink>
       <RouterLink to='/stworz' onClick={() => setIsMenuOpen(false)}>
-        Oferta
+        Stwórz
       </RouterLink>
       <RouterLink to='/kontakt' onClick={() => setIsMenuOpen(false)}>
         Kontakt

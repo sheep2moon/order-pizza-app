@@ -13,8 +13,7 @@ export default Btn;
 
 const StyledButton = styled.button`
   border: none;
-  width: 12rem;
-  padding: 0.25rem 1rem;
+  padding: 0.5em 3em;
   text-decoration: none;
   background: ${({ theme }) => theme.primary};
   color: ${(props) => props.theme.dark};

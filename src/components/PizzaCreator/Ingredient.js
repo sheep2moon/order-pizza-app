@@ -81,6 +81,7 @@ export default Ingredients;
 const IngredientContainer = styled.div`
   margin: 1.5rem 0;
   width: 100%;
+  padding: 1em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 0.5rem;
@@ -95,8 +96,7 @@ const Ingredient = styled.div`
   justify-content: center;
   align-items: center;
   transition: all 0.2s ease-in;
-  border: 4px solid
-    ${({ isActive, theme }) => (isActive ? theme.primary : '#fff')};
+  background: ${(props) => (props.isActive ? props.theme.primary : 'none')};
   box-shadow: 1px 1px 2px #000;
   :hover {
     cursor: pointer;
