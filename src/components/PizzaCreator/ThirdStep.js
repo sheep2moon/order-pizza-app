@@ -5,6 +5,7 @@ const ThirdStep = () => {
   return (
     <StepContainer>
       <h2>Zamówienie</h2>
+      <PizzaDetailsCard></PizzaDetailsCard>
     </StepContainer>
   );
 };
@@ -12,3 +13,4 @@ const ThirdStep = () => {
 export default ThirdStep;
 
 const StepContainer = styled.div``;
+const PizzaDetailsCard = styled.div``;

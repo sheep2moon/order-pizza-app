@@ -1,21 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { supabase } from '../supabaseConfig';
-
-export const fetchItems = createAsyncThunk('items/fetchItems', async () => {
-  const { data: items, error } = await supabase.from('items').select('*');
-  if (error) {
-    console.log(error);
-  }
-  console.log(items);
-  return items;
-});
+import { createSlice } from '@reduxjs/toolkit';
 
 export const shopSlice = createSlice({
   name: 'shop',
   initialState: {
-    items: [],
     cart: [],
-    status: 'idle',
+    currentProduct: [],
     error: null,
   },
   reducers: {
@@ -28,22 +17,9 @@ export const shopSlice = createSlice({
       );
     },
   },
-  extraReducers: {
-    [fetchItems.pending]: (state, action) => {
-      state.status = 'loading';
-    },
-    [fetchItems.fulfilled]: (state, action) => {
-      state.items.push(...action.payload);
-      state.status = 'succed';
-    },
-    [fetchItems.rejected]: (state, action) => {
-      state.status = 'failed';
-      state.error = action.error;
-    },
-  },
 });
 
 export const { addToCart, removeFromCart } = shopSlice.actions;
-export const selectProduct = (state, productId) =>
-  state.shop.items.find((item) => item.id === productId);
 export default shopSlice.reducer;
+// export const selectProduct = (state, productId) =>
+//   state.shop.items.find((item) => item.id === productId);

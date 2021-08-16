@@ -8,13 +8,14 @@ import FirstStep from '../components/PizzaCreator/FirstStep';
 import SecondStep from '../components/PizzaCreator/SecondStep';
 import ThirdStep from '../components/PizzaCreator/ThirdStep';
 
-const prices = [22, 28, 34];
+const prices = [14, 20, 26];
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [selectedSize, setSelectedSize] = useState(1);
   const [selectedThickness, setSelectedThickness] = useState(1);
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const [totalIngredientsPrice, setTotalIngredientsPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isBtnAnimated, setisBtnAnimated] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
@@ -29,7 +30,6 @@ const SingleProduct = () => {
   const handleAddToCart = () => {
     const userProduct = {
       uniqueId: uniqueId(),
-      ingredients: selectedIngredients,
       size: selectedSize,
       thickness: selectedThickness,
       price: totalPrice,
@@ -47,22 +47,9 @@ const SingleProduct = () => {
     if (selectedThickness === 2) {
       total += 3.5;
     }
-    total += selectedIngredients.length * 2.5;
+    total += totalIngredientsPrice;
     setTotalPrice(total);
-  }, [selectedSize, selectedThickness, selectedIngredients]);
-
-  const addIngredient = (name) => {
-    setSelectedIngredients([...selectedIngredients, name]);
-  };
-  const removeIngredient = (name) => {
-    const index = selectedIngredients.indexOf(name);
-    console.log(index);
-    if (index > -1) {
-      const newArr = selectedIngredients;
-      newArr.splice(index, 1);
-      setSelectedIngredients(newArr);
-    }
-  };
+  }, [selectedSize, selectedThickness, totalIngredientsPrice]);
 
   return (
     <>
@@ -80,9 +67,10 @@ const SingleProduct = () => {
           />
         ) : currentStep === 2 ? (
           <SecondStep
-            addIngredient={addIngredient}
-            removeIngredient={removeIngredient}
+            totalIngredientsPrice={totalIngredientsPrice}
+            setTotalIngredientsPrice={setTotalIngredientsPrice}
             selectedIngredients={selectedIngredients}
+            setSelectedIngredients={setSelectedIngredients}
           />
         ) : currentStep === 3 ? (
           <ThirdStep />

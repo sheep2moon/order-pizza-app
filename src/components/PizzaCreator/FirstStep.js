@@ -4,7 +4,7 @@ import thickImg from '../../assets/height.svg';
 import sizeImg from '../../assets/diameter.svg';
 import { BsPersonFill } from 'react-icons/bs';
 
-const prices = [22, 28, 34];
+const prices = [14, 20, 26];
 
 const FirstStep = ({
   selectedSize,
@@ -69,11 +69,11 @@ const StepContainer = styled.div`
 const OptionInfo = styled.div`
   display: flex;
   > img {
-    width: 4em;
+    width: 3em;
     margin-right: 2em;
   }
   > h3 {
-    font-size: 4em;
+    font-size: 3em;
   }
 `;
 
